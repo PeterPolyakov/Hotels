@@ -19,8 +19,7 @@ const routes = [
     { path: '/tickets', name: 'Tickets', component: Tickets },
     { path: '/rest', name: 'Rest', component: Rest },
     { path: '/auth', name: 'Auth', component: Auth },
-
-    { path: '/hotels/:id', name: 'Hotel details', component: HotelDetails, props: true },
+    { path: '/hotel/:id', name: 'Hotel details', component: HotelDetails, props: true },
     { path: '/about', name: 'About', component: About },
 ];
 
@@ -29,9 +28,6 @@ const router = createRouter({
     routes,
 });
 
-
 const app = createApp(App);
-
 app.use(router);
-
 app.mount('#app');

@@ -5,6 +5,7 @@
             <div><router-link :to="{name: 'Hotels'}">Отели</router-link></div>
             <div><router-link :to="{name: 'Tickets'}">Билеты</router-link></div>
             <div><router-link :to="{name: 'Rest'}">Отдых</router-link></div>
+            <div><router-link class="link" :to="{name: 'About'}">О Нас</router-link></div>
             <div class="auth"><router-link :to="{name: 'Auth'}">Войти</router-link></div>
         </nav>
     </div>
@@ -55,7 +56,4 @@ a {
     color: #EC2C45;
 
 }
-
-
-
 </style>

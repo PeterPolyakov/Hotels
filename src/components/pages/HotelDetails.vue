@@ -10,13 +10,13 @@
     const hotels = [
     {
         id: 1,
-        name: "bukovel",
-        photo: "http://www.rosphoto.com/images/u/articles/1510/7_5.jpg",
+        name: "Hotel Kramatorsk",
+        photo: "https://cf.bstatic.com/xdata/images/hotel/max1280x900/267850949.jpg?k=8b574a4ab6665719d78fd83ee593d8ad6be65e429c6978cbe95d8c47e881210c&o=&hp=1",
     },
     {
     id: 2,
-    name: "kovel",
-    photo: "http://www.rosphoto.com/images/u/articles/1510/4_8.jpg",
+    name: "Hotel Aisty",
+    photo: "https://cf.bstatic.com/xdata/images/hotel/max1280x900/198545321.jpg?k=6aa766d9f9dbedcd0e35c554e5afc61b36a3ea575670fe300b18bde2abaa1d26&o=&hp=1",
     },
 ];
 
