@@ -1,5 +1,5 @@
 <template>
-  <header-comp></header-comp>
+  <!-- <header-comp></header-comp> -->
 
   <router-view></router-view>
 
@@ -7,13 +7,13 @@
 </template>
 
 <script>
-import HeaderComp from "./components/layout/Header.vue";
+
 import FooterComp from "./components/layout/Footer.vue";
 
 export default {
   name: "App",
   components: {
-    HeaderComp,
+    // HeaderComp,
     FooterComp,
   },
 };
@@ -49,6 +49,7 @@ input,
 button,
 textarea {
   font-family: inherit;
+  resize: none;
 }
 input::-ms-clear {
   display: none;
@@ -88,6 +89,8 @@ h6 {
   font-size: inherit;
 }
 /*--------------------*/
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css");
+
 .contain {
   max-width: 1280px;
   margin: 0 auto;
@@ -96,5 +99,6 @@ h6 {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: rgb(239,239,239);
 }
 </style>

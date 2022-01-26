@@ -1,27 +1,32 @@
 <template>
-    <div v-if="hotel.id">
-        <h1>{{ hotel.name }}</h1>
-        <img :src="hotel.photo" />
+    <div class="wrapper">
+        <header-comp></header-comp>
+        <div v-if="hotel.id">
+            <h1>{{ hotel.name }}</h1>
+            <img :src="hotel.photo" />
+        </div>
+        <div v-else>Отель не найден</div>
     </div>
-    <div v-else>Отель не найден</div>
 </template>
 
 <script>
+import headerComp from './../layout/Header.vue'
+
     const hotels = [
     {
         id: 1,
         name: "Hotel Kramatorsk",
-        photo: "../../assets/h-kramatorsk.jpg",
+        photo: require("@/assets/h-kramatorsk.jpg"),
     },
     {
     id: 2,
     name: "Hotel Gut",
-    photo: "../../assets/h-gut.jpg",
+    photo: require("@/assets/h-gut.jpg"),
     },
     {
         id: 3,
         name: "Hotel Aisty",
-        photo: "../../assets/h-aisty.jpg",
+        photo: require("@/assets/h-aisty.jpg"),
     },
 ];
 
@@ -33,6 +38,9 @@ export default {
         required: true,
         type: Number,
     },
+    },
+    components: {
+        headerComp
     },
     setup(props) {
     const hotel = reactive({

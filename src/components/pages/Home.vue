@@ -1,29 +1,32 @@
 <template>
     <div class="wrapper">
-        <div class="contain">
-            <div id="carouselExampleSlidesOnly" class="slider carousel slide" data-bs-ride="carousel">
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <router-link :to="{name: 'Hotel details', params: {id: 1}}"><img src="@/assets/h-kramatorsk.jpg" class="d-block w-100" alt="h-kramatorsk"></router-link>
-                    </div>
-                    <div class="carousel-item">
-                        <router-link :to="{name: 'Hotel details', params: {id: 2}}"><img src="@/assets/h-gut.jpg" class="d-block w-100" alt="h-gut"></router-link>
-                    </div>
-                    <div class="carousel-item">
-                        <router-link :to="{name: 'Hotel details', params: {id: 2}}"><img src="@/assets/h-aisty.jpg" class="d-block w-100" alt="h-aisty"></router-link>
-                    </div>
-                </div>
-            </div>   
+        <header-home></header-home>
+        <div class="slider-home contain">
+            <v-slider>
+                <h3 class="slider-title">Популярные отели Украины:</h3>
+            </v-slider>
         </div>
+        <div class="comments">
+            <h3 class="comments-title">Отзывы клиентов:</h3>
+        </div> 
     </div>
 </template>
 
 <script>
-    
+import HeaderHome from "@/components/layout/HeaderHome.vue"
+import vSlider from "@/components/UI/v-slider.vue"
+
+export default {
+    data() {},
+    components: {
+        HeaderHome,
+        vSlider
+    }
+}
 </script>
 
 <style scoped>
-    a {
+    /* a {
         color: rgb(78, 78, 77);
     }
     .recomend {
@@ -41,10 +44,19 @@
     }
     .name a:hover {
     color: #FBB035;
+} */
+
+.comments {
+    width: 100%;
+    height: 400px;
+    background: url("../../assets/comments-bg.jpg") no-repeat 100% 100%;
+    background-size: 100% 100%;
+    background-attachment: fixed;
 }
-.slider {
-    width: 70%;
-    height: 100vh;
-    margin: 0 auto;
+.slider-home {
+    margin-bottom: 30px;
+}
+.slider-title {
+    margin: 30px;
 }
 </style>

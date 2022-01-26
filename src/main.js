@@ -14,7 +14,7 @@ import HotelDetails from './components/pages/HotelDetails.vue';
 import About from './components/pages/About.vue';
 
 const routes = [
-    { path: '/home', name: 'Home', component: Home },
+    { path: '/', name: 'Home', component: Home },
     { path: '/hotels', name: 'Hotels', component: Hotels },
     { path: '/tickets', name: 'Tickets', component: Tickets },
     { path: '/rest', name: 'Rest', component: Rest },
