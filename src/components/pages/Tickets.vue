@@ -22,7 +22,6 @@
 import headerComp from './../layout/Header.vue'
 
 export default {
-    data() {},
     components: {
         headerComp
     }

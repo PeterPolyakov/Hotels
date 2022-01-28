@@ -5,70 +5,58 @@
         <form action="#">
             <div class="blocs mb-3">
                 <div class="bloc">
-                    <div class="mb-3">
-                        <label for="name" class="form-label">Логин</label>
-                        <input 
-                        class="input form-control" 
-                        id="name"
+                    <input-comp class="mb-3"
                         v-model.trim="name"
-                        required
-                        >
-                    </div>
-                    <div class="mb-3">
-                        <label for="email" class="form-label">Адрес электронной почты</label>
-                        <input 
-                        class="input form-control" 
-                        type="email" 
-                        id="email"
+                        label="Имя"
+                    />
+                    <input-comp class="mb-3"
                         v-model.trim="email"
-                        required
-                        >
-                    </div>
-                    <div class="mb-3">
-                        <label for="password" class="form-label">Пароль</label>
-                        <input 
-                        class="input form-control" 
-                        type="password"
-                        id="password"
+                        type="email"
+                        label="Email"
+                    />
+                    <input-comp class="mb-3"
                         v-model.trim="password"
-                        required
-                        >
-                    </div>
-                    <div class="mb-3">
-                        <label for="password_2" class="form-label">Повторите пароль</label>
-                        <input 
-                        class="input form-control" 
-                        type="password" 
-                        id="password_2"
+                        type="password"
+                        label="Пароль"
+                    />
+                    <input-comp class="mb-3"
                         v-model.trim="password_2"
-                        required
-                        >
-                    </div>
+                        type="password"
+                        label="Введите пароль еще раз"
+                    />
                 </div>
                 <div class="bloc">
-                    <div>
-                        <label for="district" class="form-label">Область</label>
-                        <select v-model="district" class="form-select input mb-3" id="district">
-                            <option 
-                            v-for="(district, index) in districts"
-                            :value="district.value"
-                            :key="index"
-                            >
-                            {{ district.name }}
-                            </option>
-                        </select>
-                    </div>
-                    <div class="form-check">
-                        <input v-model="gender" class="form-check-input" value="male" type="radio" name="gender" id="male" checked>
-                        <label class="form-check-label" for="male">Мужчина</label>
-                    </div>
-                    <div class="form-check">
-                        <input v-model="gender" class="form-check-input" value="female" type="radio" name="gender" id="female">
-                        <label class="form-check-label" for="female">Женщина</label>
-                    </div>
+                    <label for="district" class="form-label">Область</label>
+                    <select v-model="district" class="form-select input mb-3" id="district">
+                        <option 
+                        v-for="(district, index) in districts"
+                        :value="district.value"
+                        :key="index"
+                        >
+                        {{ district.name }}
+                        </option>
+                    </select>
+                    <radio-comp
+                    v-model="gender"
+                    value="male"
+                    name="gender"
+                    label="Мужчина"
+                    />
+                    <radio-comp
+                    v-model="gender"
+                    value="female"
+                    name="gender"
+                    label="Женщина"
+                    />
                     <div class="mb-3 mt-3 form-check">
-                        <input v-model="remember" type="checkbox" class="input form-check-input" id="example">
-                        <label class="form-check-label" for="example">Запомнить меня</label>
+                        <check-comp
+                        v-model="remember"
+                        true-value="да"
+                        false-value="нет"
+                        label="Запомнить"
+                        />
+                        <!-- <input v-model="remember" type="checkbox" class="input form-check-input" id="example">
+                        <label class="form-check-label" for="example">Запомнить меня</label> -->
                     </div>
                     <div class="form-floating">
                         <textarea v-model.trim="message" class="form-control input mb-3" placeholder="Сообщение" id="message" style="height: 120px"></textarea>
@@ -79,7 +67,7 @@
                 <div class="text-center"><button type="submit" class="button btn btn-primary mb-3">Войти</button></div>
             <hr>
             <div class="text-center small">Входя в аккаунт или создавая новый, вы соглашаетесь с нашими</div> 
-                <div class="text-center small"><a href="">Правилами и условиями</a> и <a href="">Положением о конфиденциальности</a></div>
+            <div class="text-center small"><a href="#">Правилами и условиями</a> и <a href="#">Положением о конфиденциальности</a></div>
             <hr>
             <div class="text-center small">Все права защищены.</div>
             <div class="text-center small">Copyright (2006–2022) — Hotels24.com™</div>
@@ -89,8 +77,17 @@
 </template>
 
 <script>
+import InputComp from '../UI/form/input-comp.vue'
+import RadioComp from '../UI/form/radio-comp.vue'
+import CheckComp from '../UI/form/check-comp.vue'
+
 export default {
     name: 'vAuth',
+    components: {
+        InputComp,
+        RadioComp,
+        CheckComp
+    },
     data() {
         return {
             name: '',

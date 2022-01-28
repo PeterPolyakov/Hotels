@@ -2,9 +2,9 @@
     <div class="wrapper">
         <header-home></header-home>
         <div class="slider-home contain">
-            <v-slider>
+            <slider-comp>
                 <h3 class="slider-title">Популярные отели Украины:</h3>
-            </v-slider>
+            </slider-comp>
         </div>
         <div class="comments">
             <h3 class="comments-title">Отзывы клиентов:</h3>
@@ -14,13 +14,12 @@
 
 <script>
 import HeaderHome from "@/components/layout/HeaderHome.vue"
-import vSlider from "@/components/UI/v-slider.vue"
+import sliderComp from '../UI/slider-comp.vue'
 
 export default {
-    data() {},
     components: {
         HeaderHome,
-        vSlider
+        sliderComp
     }
 }
 </script>

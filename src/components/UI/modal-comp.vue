@@ -11,11 +11,7 @@
 
 <script>
 export default {
-    name: "v-modal",
-    props: {},
-    data() {
-        return {}
-    },
+    name: "modal-comp",
     methods: {
         closeModal() {
             this.$emit('closeModal')

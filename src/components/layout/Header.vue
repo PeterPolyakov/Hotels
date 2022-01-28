@@ -21,29 +21,28 @@
             </div>
         </nav>
                 <slot></slot>
-                <v-modal
+                <modal-comp
                 v-if="isModalVisible"
                 @closeModal="closeModal">
                 <v-auth></v-auth>
-                </v-modal>
+                </modal-comp>
     </div>
 </div>
 </template>
 
 <script>
-import vModal from '../UI/v-modal.vue'
+import modalComp from '../UI/modal-comp.vue'
 import vAuth from '../pages/Auth.vue'
 
 export default {
     name: 'headerComp',
-    props: {},
     data(){
         return {
             isModalVisible: false
         }
     },
     components: {
-        vModal,
+        modalComp,
         vAuth
     },
     methods: {

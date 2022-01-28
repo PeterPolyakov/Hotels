@@ -1,6 +1,7 @@
 <template>
     <div class="wrapper">
         <header-comp></header-comp>
+
         <div v-if="hotel.id">
             <h1>{{ hotel.name }}</h1>
             <img :src="hotel.photo" />
@@ -12,16 +13,16 @@
 <script>
 import headerComp from './../layout/Header.vue'
 
-    const hotels = [
+const hotels = [
     {
         id: 1,
         name: "Hotel Kramatorsk",
         photo: require("@/assets/h-kramatorsk.jpg"),
     },
     {
-    id: 2,
-    name: "Hotel Gut",
-    photo: require("@/assets/h-gut.jpg"),
+        id: 2,
+        name: "Hotel Gut",
+        photo: require("@/assets/h-gut.jpg"),
     },
     {
         id: 3,
