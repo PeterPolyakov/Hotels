@@ -45,16 +45,16 @@ export default {
     right: 0;
     top: 0;
     bottom: 0;
-    height: 85%;
-    width: 90%;
+    height: 90%;
+    width: 35%;
     background-color: rgb(251,176,53,0.9);
     box-shadow: 0 0 17px 0 rgb(251,176,53,0.9);
 }
 .icon {
     font-size: 28px;
     position: fixed;
-    right: 100px;
-    top: 80px;
+    right: 34%;
+    top: 6%;
     cursor: pointer;
 }
 </style>
