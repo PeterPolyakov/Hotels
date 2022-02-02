@@ -4,28 +4,25 @@
         <nav class="header-nav-menu">
             <div class="logo"><router-link :to="{name: 'Home'}"><img class="header-logo" src="@/assets/logo_white.png" alt="header-logo"></router-link></div>
             <div class="nav-menu">
-                <div><router-link class="nav-menu-item active" :to="{name: 'Hotels'}">Отели</router-link></div>
-                <div><router-link class="nav-menu-item" :to="{name: 'Tickets'}">Билеты</router-link></div>
-                <div><router-link class="nav-menu-item" :to="{name: 'Rest'}">Отдых</router-link></div>
-                <div><router-link class="nav-menu-item" :to="{name: 'About'}">О Нас</router-link></div>
+                <div><router-link active-class="active" class="nav-menu-item" :to="{name: 'Hotels'}">Отели</router-link></div>
+                <div><router-link active-class="active" class="nav-menu-item" :to="{name: 'Tickets'}">Билеты</router-link></div>
+                <div><router-link active-class="active" class="nav-menu-item" :to="{name: 'Rest'}">Отдых</router-link></div>
+                <div><router-link active-class="active" class="nav-menu-item" :to="{name: 'About'}">Добавить объект</router-link></div>
             </div>
             <div class="auth-search">
                 <div class="auth">
-                <button
-                class="button"
-                @click="showModal"
-                >
-                Войти
-                </button></div>
-                <!-- <div class="auth"><router-link :to="{name: 'Auth'}">Войти</router-link></div>  -->
+                    <button class="button" @click="showModal">
+                    Войти
+                    </button>
+                </div>
             </div>
         </nav>
-                <slot></slot>
-                <modal-comp
-                v-if="isModalVisible"
-                @closeModal="closeModal">
-                <v-auth></v-auth>
-                </modal-comp>
+        <slot></slot>
+        <modal-comp
+        v-if="isModalVisible"
+        @closeModal="closeModal">
+        <v-auth></v-auth>
+        </modal-comp>
     </div>
 </div>
 </template>

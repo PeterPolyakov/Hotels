@@ -1,31 +1,31 @@
 <template>
-    <div class="wrapper">
-        <header-home></header-home>
-        <div class="slider-home contain">
-            <slider-comp>
-                <h3 class="slider-title">Популярные отели Украины:</h3>
-            </slider-comp>
-        </div>
-        <div class="comments">
-            <h3 class="comments-title">Отзывы клиентов:</h3>
-        </div> 
+  <div class="wrapper">
+    <header-home></header-home>
+    <div class="slider-home contain">
+      <slider-comp>
+        <h3 class="slider-title">Популярные отели Украины:</h3>
+      </slider-comp>
     </div>
+    <div class="comments">
+      <h3 class="comments-title">Отзывы клиентов:</h3>
+    </div>
+  </div>
 </template>
 
 <script>
-import HeaderHome from "@/components/layout/HeaderHome.vue"
-import sliderComp from '../UI/slider-comp.vue'
+import HeaderHome from "@/components/layout/HeaderHome.vue";
+import sliderComp from "../UI/slider-comp.vue";
 
 export default {
-    components: {
-        HeaderHome,
-        sliderComp
-    }
-}
+  components: {
+    HeaderHome,
+    sliderComp,
+  },
+};
 </script>
 
 <style scoped>
-    /* a {
+/* a {
         color: rgb(78, 78, 77);
     }
     .recomend {
@@ -46,16 +46,16 @@ export default {
 } */
 
 .comments {
-    width: 100%;
-    height: 400px;
-    background: url("../../assets/comments-bg.jpg") no-repeat 100% 100%;
-    background-size: 100% 100%;
-    background-attachment: fixed;
+  width: 100%;
+  height: 400px;
+  background: url("../../assets/comments-bg.jpg") no-repeat 100% 100%;
+  background-size: 100% 100%;
+  background-attachment: fixed;
 }
 .slider-home {
-    margin-bottom: 30px;
+  margin-bottom: 30px;
 }
 .slider-title {
-    margin: 30px;
+  margin: 30px;
 }
 </style>

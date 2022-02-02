@@ -6,8 +6,12 @@
             <hr>
             <h1>{{hotelsCount}}</h1>
             <div class="post" v-for="post in allHotels" :key="post.id">
-                <h2 class="title">{{post.title}}</h2>
+                <p class="title">{{post.title}}</p>
                 <p class="body">{{post.body}}</p>
+                <div class="post-btns">
+                    <button>Удалить</button>
+                    <button>Подробнее</button>
+                </div>
             </div>
         </div>
     </div>
@@ -33,7 +37,6 @@ export default {
 <style scoped>
 .contain {
     margin: 50px auto;
-    width: 500px;
     text-align: center;
 }
 .post {
@@ -41,5 +44,14 @@ export default {
     border-radius: 10px;
     margin-bottom: 1rem;
     text-align: center;
+}
+button {
+    width: 20%;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    padding: 5px;
+    color: rgb(136, 96, 96);
+    font-size: 14px;
+    margin-bottom: 5px;
 }
 </style>

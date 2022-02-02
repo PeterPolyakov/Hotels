@@ -23,7 +23,7 @@
         <div class="text-center">
           <button @click.prevent="login" class="button btn btn-primary mb-3">Войти</button>
           <hr>
-          <button @click="gAuth"><img src="../../assets/icon-google.svg" alt="google"></button>
+          <button @click.prevent="gAuth" class="g-auth"><img src="../../assets/icon-google.svg" alt="google"></button>
         </div>
       </form>
       <hr />
@@ -70,13 +70,9 @@
 
 <script>
 import InputComp from "../UI/form/input-comp.vue";
-
-import firebase from "firebase/compat/app"
-import "firebase/compat/auth"
-import "firebase/compat/firestore"
+import {getAuth, GoogleAuthProvider, signInWithPopup} from 'firebase/auth';
 
 export default {
-  namespaced: true,
   name: "vAuth",
   components: {
     InputComp,
@@ -109,12 +105,12 @@ export default {
   },
   methods: {
     gAuth: function() {
-      let provider = new firebase.auth.GoogleAuthProvider();
-      firebase.auth().signInWithPopup(provider)
+      const provider = new GoogleAuthProvider();
+      const auth = getAuth();
+      signInWithPopup(auth, provider)
       .then((result) => {
-        let token = result.credential.assetsToken;
+        console.log(result)
         let user = result.user;
-          console.log(token)
           console.log(user)
       }).catch(err => {
         console.log(err);
@@ -153,5 +149,10 @@ export default {
   border: 1px solid rgb(78, 78, 77);
   background-color: rgb(180, 180, 180);
   color: rgb(78, 78, 77);
+}
+.g-auth {
+  padding: 5px;
+  border: 1px solid rgb(78, 78, 77);
+  background-color: rgb(180, 180, 180, 0);
 }
 </style>
