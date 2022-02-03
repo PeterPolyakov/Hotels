@@ -3,6 +3,7 @@
         <label class="form-label">{{label}}</label>
             <input class="input form-control"
             :type="type"
+            :placeholder="placeholder"
             :value="modelValue"
             @input="updateInput"
             >
@@ -11,7 +12,7 @@
 
 <script>
 export default {
-    name: "input-сomp",
+    name: 'input-сomp',
     props: {
         modelValue: {
             type: [String, Number]
@@ -19,6 +20,10 @@ export default {
         type: { 
             type: String, 
             default: 'text'
+        },
+        placeholder: {
+            type: String,
+            default: ''
         },
         label: { 
             type: String, 
@@ -35,6 +40,11 @@ export default {
 
 <style scoped>
 .input {
-    border: 1px solid rgb(78, 78, 77);
+    width: 100%;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 15px;
+
 }
 </style>

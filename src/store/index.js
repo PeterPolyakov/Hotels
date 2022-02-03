@@ -1,11 +1,11 @@
 import { createStore } from 'vuex'
-import addHotel from './modules/addHotel'
+// import addHotel from './modules/addHotel'
 import user from './user'
 
 
 const store = createStore ({
     modules: {
-        addHotel,
+        // addHotel,
         user,
     }
 });

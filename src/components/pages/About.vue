@@ -2,56 +2,116 @@
     <div class="wrapper">
         <header-comp></header-comp>
         <div class="contain">
-            <add-hotel/>
-            <hr>
-            <h1>{{hotelsCount}}</h1>
-            <div class="post" v-for="post in allHotels" :key="post.id">
-                <p class="title">{{post.title}}</p>
-                <p class="body">{{post.body}}</p>
-                <div class="post-btns">
-                    <button>Удалить</button>
-                    <button>Подробнее</button>
-                </div>
+            <h1>Отели</h1>
+            <input-comp
+                v-model="searchHotel"
+                placeholder="Поиск"
+            />
+            <div class="buttons">
+                <button-comp
+                    @click="showModal"
+                >
+                    Добавить отель
+                </button-comp>
+                <select-comp 
+                    v-model="selectedSort"
+                    :options="sortOptions"
+                />
             </div>
+            <modal-comp-2 v-model:show="modalVisible">
+                <hotel-add
+                @add="addHotel"
+            />
+            </modal-comp-2>
+            <hotel-list
+                :hotels='sortedAndSearchHotels'
+                @remove="removeHotel"
+                v-if="!isLoading"
+            />
+            <div v-else>Загрузка...</div>
         </div>
     </div>
 </template>
 
 <script>
 import headerComp from './../layout/Header.vue';
-import addHotel from './../UI/add-hotel.vue'
-import { mapGetters } from "vuex";
+import hotelList from './../UI/hotel-list.vue';
+import hotelAdd from './../UI/hotel-add.vue';
+import ModalComp2 from '../UI/modal-comp2.vue';
+import axios from 'axios';
+import SelectComp from '../UI/form/select-comp.vue';
+import InputComp from '../UI/form/input-comp.vue';
 
 export default {
     components: {
         headerComp,
-        addHotel
+        hotelList,
+        hotelAdd,
+        ModalComp2,
+        SelectComp,
+        InputComp,
     },
-    computed: mapGetters(["allHotels", "hotelsCount"]),
-    async mounted() {
-        this.$store.dispatch("fetchHotels")
-    }
+    data() {
+        return {
+            hotels: [],
+            modalVisible: false,
+            isLoading: false,
+            searchHotel: '',
+            selectedSort: '',
+            sortOptions: [
+                {value: 'title', name: 'По названию'},
+                {value: 'body', name: 'По адресу' },
+            ]
+        }
+    },
+    methods: {
+        addHotel(hotel) {
+            this.hotels.unshift(hotel);
+            this.modalVisible = false;
+        },
+        removeHotel(hotel) {
+            this.hotels = this.hotels.filter(h => h.id !== hotel.id)
+        },
+        showModal() {
+            this.modalVisible = true;
+        },
+        async fetchHotels() {
+            try {
+                this.isLoading = true;
+                    const response = await axios.get('https://jsonplaceholder.typicode.com/posts?_limit=5');
+                    this.hotels = response.data;
+                    this.isLoading = false;
+            } catch (e) {
+                alert('Ошибка')
+            }
+        }
+    },
+    mounted() {
+        this.fetchHotels();
+    },
+    computed: {
+        sortedHotels() {
+            return [...this.hotels].sort((hotel1, hotel2) => hotel1[this.selectedSort]?.localeCompare(hotel2[this.selectedSort]))
+        },
+        sortedAndSearchHotels() {
+            return this.sortedHotels.filter(post => post.title.toLowerCase().includes(this.searchHotel.toLowerCase()))
+        }
+    },
 }
 </script>
 
 <style scoped>
+* {
+    box-sizing: border-box;
+}
 .contain {
-    margin: 50px auto;
-    text-align: center;
+    width: 70%;
+    padding: 15px;
+    margin: 20px auto;
 }
-.post {
-    border: 2px solid #ccc;
-    border-radius: 10px;
-    margin-bottom: 1rem;
-    text-align: center;
-}
-button {
-    width: 20%;
-    border: 2px solid #ccc;
-    border-radius: 5px;
-    padding: 5px;
-    color: rgb(136, 96, 96);
-    font-size: 14px;
-    margin-bottom: 5px;
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    margin: 15px 0;
 }
 </style>
