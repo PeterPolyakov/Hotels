@@ -2,6 +2,7 @@
     <div class="wrapper">
         <label class="form-label">{{label}}</label>
             <input class="input form-control"
+            required
             :type="type"
             :placeholder="placeholder"
             :value="modelValue"
@@ -12,7 +13,7 @@
 
 <script>
 export default {
-    name: 'input-сomp',
+    name: 'InputComp',
     props: {
         modelValue: {
             type: [String, Number]
@@ -41,10 +42,13 @@ export default {
 <style scoped>
 .input {
     width: 100%;
-    border: 2px solid #ccc;
+    border: 2px solid rgb(251,176,53);
+    background-color: rgba(255, 255, 255, 0.5);
     border-radius: 5px;
-    padding: 10px;
-    margin-top: 15px;
-
+    padding: 15px;
+}
+input::placeholder {
+    color: white;
+    font-size: 20px;
 }
 </style>

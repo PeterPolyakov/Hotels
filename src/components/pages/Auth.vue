@@ -3,7 +3,7 @@
     <div class="contain">
       <h1 class="title">Авторизация</h1>
       <form>
-        <input-comp class="mb-3" 
+        <input-comp class="mb-3"
           v-model.trim="email"
           type="email"
           label="Email"
@@ -21,9 +21,26 @@
           <label class="form-check-label" for="example">Запомнить меня</label>
         </div>
         <div class="text-center">
-          <button @click.prevent="login" class="button btn btn-primary mb-3">Войти</button>
-          <hr>
-          <button @click.prevent="gAuth" class="g-auth"><img src="../../assets/icon-google.svg" alt="google"></button>
+          <button 
+            @click.prevent="login" 
+            class="button btn btn-primary mb-3"
+          >
+            Войти
+          </button>
+          <p class="subtitle">НЕТ АККАУНТА?</p>
+          <button 
+            @click.prevent="registration" 
+            class="button btn btn-primary mb-3"
+          >
+            Зарегестрироватся
+          </button>
+          <p class="subtitle">ИЛИ</p>
+          <button 
+            @click.prevent="google" 
+            class="g-auth"
+          >
+            <img src="../../assets/icon-google.svg" alt="google">
+          </button>
         </div>
       </form>
       <hr />
@@ -35,42 +52,12 @@
         <hr />
         <div class="text-center small">Все права защищены.</div>
         <div class="text-center small">Copyright (2006–2022) — Hotels24.com™</div>
-        <!-- <div class="bloc">
-                    <label for="district" class="form-label">Область</label>
-                    <select v-model="district" class="form-select input mb-3" id="district">
-                        <option 
-                        v-for="(district, index) in districts"
-                        :value="district.value"
-                        :key="index"
-                        >
-                        {{ district.name }}
-                        </option>
-                    </select>
-                    <radio-comp
-                    v-model="gender"
-                    value="male"
-                    name="gender"
-                    label="Мужчина"
-                    />
-                    <radio-comp
-                    v-model="gender"
-                    value="female"
-                    name="gender"
-                    label="Женщина"
-                    />
-                    
-                    <div class="form-floating">
-                        <textarea v-model.trim="message" class="form-control input mb-3" placeholder="Сообщение" id="message" style="height: 120px"></textarea>
-                        <label for="message">Сообщение</label>
-                    </div>
-                </div> -->
     </div>
   </div>
 </template>
 
 <script>
 import InputComp from "../UI/form/input-comp.vue";
-import {getAuth, GoogleAuthProvider, signInWithPopup} from 'firebase/auth';
 
 export default {
   name: "vAuth",
@@ -79,47 +66,33 @@ export default {
   },
   data() {
     return {
-      // name: "",
       email: "",
       password: "",
-      // password_2: "",
-      // gender: "male",
       remember: false,
-      // message: "",
-      // district: "Donetsk",
-      // districts: [
-      //   {
-      //     name: "Донецкая",
-      //     value: "Donetsk",
-      //   },
-      //   {
-      //     name: "Харьковская",
-      //     value: "Kharkiv",
-      //   },
-      //   {
-      //     name: "Луганская",
-      //     value: "Luhansk",
-      //   },
-      // ],
     };
   },
   methods: {
-    gAuth: function() {
-      const provider = new GoogleAuthProvider();
-      const auth = getAuth();
-      signInWithPopup(auth, provider)
-      .then((result) => {
-        console.log(result)
-        let user = result.user;
-          console.log(user)
-      }).catch(err => {
-        console.log(err);
-      });
-    },
-    async login() {
-      await this.$store.dispatch('user/login', {email: this.email, password: this.password}).then((result) => {
+    login() {
+      this.$store.dispatch('user/login', {email: this.email, password: this.password}).then((result) => {
         console.log('login result', result)
-        this.$router.push('/')
+        this.$emit('closeModal')
+      })
+    },
+    registration() {
+      this.$store.dispatch('user/sign', {email: this.email, password: this.password}).then((result) => {
+        console.log(result)
+        this.$emit('closeModal')
+        if (result === 'OK') {
+          this.$router.push('/');
+        } else if (result === 'error') {
+          alert('Ошибка регистрации')
+        }
+      })
+    },
+    google() {
+      this.$store.dispatch('user/gAuth').then((result) => {
+        console.log(result)
+        this.$emit('closeModal')
       })
     }
   }
@@ -154,5 +127,26 @@ export default {
   padding: 5px;
   border: 1px solid rgb(78, 78, 77);
   background-color: rgb(180, 180, 180, 0);
+  margin-bottom: 15px;
+}
+
+.subtitle:before,
+.subtitle:after {
+    content: '';
+    display: inline-block;
+    position: relative;
+    top: -1px;
+    width: 10%;
+    height: 1px;
+    vertical-align: middle;
+    background: rgb(0, 0, 0);
+}
+.subtitle:before {
+    left: -10px;
+    margin-left: -50%;
+}
+.subtitle:after {
+    left: 10px;
+    margin-right: -50%;
 }
 </style>

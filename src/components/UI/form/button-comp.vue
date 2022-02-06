@@ -12,9 +12,9 @@ export default {
 
 <style scoped>
 .button {
-    background: none;
-    border: 2px solid #ccc;
-    color: rgb(92, 91, 91);
+    background-color: rgb(251,176,53,0.5);;
+    border: 2px solid rgb(251,176,53);
+    color: rgb(255, 255, 255);
     border-radius: 5px;
     padding: 10px 15px;
 }

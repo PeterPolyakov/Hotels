@@ -8,7 +8,7 @@
                 placeholder="Название отеля"
             />
             <input-comp
-                v-model.trim="hotel.adress"
+                v-model.trim="hotel.body"
                 type="text" 
                 placeholder="Адресс отеля"
             />
@@ -52,6 +52,7 @@ export default {
 form {
     display: flex;
     flex-direction: column;
+    color: white;
 }
 
 .button {

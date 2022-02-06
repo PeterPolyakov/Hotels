@@ -11,17 +11,31 @@
             </div>
             <div class="auth-search">
                 <div class="auth">
-                    <button class="button" @click="showModal">
+                    <button 
+                        class="button" 
+                        v-if="!$store.getters['user/isAuth']"
+                        @click="showModal"
+                    >
                     Войти
                     </button>
+                    <div v-else class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                            {{$store.getters['user/email']}}
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li><a class="dropdown-item" href="#">Кабинет</a></li>
+                            <li><a @click="$store.dispatch('user/logout')" class="dropdown-item" href="#">Выйти</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </nav>
         <slot></slot>
-        <modal-comp
-        v-if="isModalVisible"
-        @closeModal="closeModal">
-        <v-auth></v-auth>
+        <modal-comp 
+            @close-modal="closeModal"
+            v-if="isModalVisible"
+        >
+        <v-auth @close-modal="closeModal"></v-auth>
         </modal-comp>
     </div>
 </div>
@@ -110,4 +124,8 @@ a {
     padding: 10px 20px;
     color: #FBB035;
 }
+
+/* button:hover::before {
+    content: "Выйти ";
+} */
 </style>

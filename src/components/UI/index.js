@@ -1,9 +1,11 @@
 import buttonComp from "./form/button-comp.vue";
-import inputComp from "./form/input-comp.vue";
-import modalComp2 from "./modal-comp2.vue";
+import InputComp from "./form/input-comp.vue";
+import SelectComp from "./form/select-comp.vue";
+import ModalComp2 from "./ModalComp2.vue";
 
 export default [
   buttonComp,
-  inputComp,
-  modalComp2,
+  InputComp,
+  SelectComp,
+  ModalComp2,
 ];

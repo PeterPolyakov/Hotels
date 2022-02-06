@@ -1,34 +1,39 @@
 <template>
+    <header-comp/>
     <div class="wrapper">
-        <header-comp></header-comp>
-        <div class="contain">
-            <h1>Отели</h1>
-            <input-comp
-                v-model="searchHotel"
-                placeholder="Поиск"
-            />
-            <div class="buttons">
-                <button-comp
-                    @click="showModal"
-                >
-                    Добавить отель
-                </button-comp>
-                <select-comp 
-                    v-model="selectedSort"
-                    :options="sortOptions"
+        <div class="con">
+            <div class="contain">
+                <h1 class="title">Отели</h1>
+                <div class="buttons">
+                    <button-comp
+                        class="b"
+                        @click="showModal"
+                    >
+                        Добавить отель
+                    </button-comp>
+                    <select-comp 
+                        class="s"
+                        v-model="selectedSort"
+                        :options="sortOptions"
+                    />
+                    <input-comp
+                        class="i"
+                        v-model="searchHotel"
+                        placeholder="Поиск"
+                    />
+                </div>
+                <modal-comp-2 v-model:show="modalVisible">
+                    <hotel-add
+                    @add="addHotel"
                 />
+                </modal-comp-2>
+                <hotel-list
+                    :hotels='sortedAndSearchHotels'
+                    @remove="removeHotel"
+                    v-if="!isLoading"
+                />
+                <div v-else>Загрузка...</div>
             </div>
-            <modal-comp-2 v-model:show="modalVisible">
-                <hotel-add
-                @add="addHotel"
-            />
-            </modal-comp-2>
-            <hotel-list
-                :hotels='sortedAndSearchHotels'
-                @remove="removeHotel"
-                v-if="!isLoading"
-            />
-            <div v-else>Загрузка...</div>
         </div>
     </div>
 </template>
@@ -37,19 +42,13 @@
 import headerComp from './../layout/Header.vue';
 import hotelList from './../UI/hotel-list.vue';
 import hotelAdd from './../UI/hotel-add.vue';
-import ModalComp2 from '../UI/modal-comp2.vue';
 import axios from 'axios';
-import SelectComp from '../UI/form/select-comp.vue';
-import InputComp from '../UI/form/input-comp.vue';
 
 export default {
     components: {
         headerComp,
         hotelList,
         hotelAdd,
-        ModalComp2,
-        SelectComp,
-        InputComp,
     },
     data() {
         return {
@@ -78,7 +77,7 @@ export default {
         async fetchHotels() {
             try {
                 this.isLoading = true;
-                    const response = await axios.get('https://jsonplaceholder.typicode.com/posts?_limit=5');
+                    const response = await axios.get('https://jsonplaceholder.typicode.com/photos?_limit=5');
                     this.hotels = response.data;
                     this.isLoading = false;
             } catch (e) {
@@ -104,14 +103,31 @@ export default {
 * {
     box-sizing: border-box;
 }
+.con {
+    background-image: url('https://clipart-db.ru/file_content/rastr/background_019.jpg');
+    background-attachment: fixed;
+}
 .contain {
     width: 70%;
-    padding: 15px;
-    margin: 20px auto;
+    margin: 0 auto;
+    color: white;
+    font-size: 20px;
+}
+.title {
+    text-align: center;
+    font-size: 46px;
+    padding-top: 20px;
 }
 .buttons {
     display: flex;
     justify-content: space-between;
-    margin: 15px 0;
+    margin-bottom: 30px;
+}
+.b, .s, .i {
+    width: 350px;
+}
+.b, .s {
+    height: 50px;
+    margin-top: 30px;
 }
 </style>

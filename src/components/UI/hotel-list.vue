@@ -1,6 +1,5 @@
 <template>
   <div v-if="hotels.length > 0">
-    <h3>Список отелей</h3>
     <transition-group name="hotel-list">
       <hotel-item 
         v-for="hotel in hotels" 
@@ -28,6 +27,9 @@ export default {
 </script>
 
 <style scoped>
+div {
+  padding-bottom: 40px;
+}
 .hotel-list-item {
   display: inline-block;
   margin-right: 10px;

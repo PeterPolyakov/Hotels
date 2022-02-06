@@ -1,6 +1,6 @@
 <template>
   <select v-model="selected" @change="changeOption">
-    <option disabled value="">Выберите из списка</option>
+    <option disabled value="disabled">Выберите из списка</option>
     <option
       v-for="option in options"
       :key="option.value"
@@ -13,7 +13,12 @@
 
 <script>
 export default {
-  name: 'select-comp',
+  name: 'SelectComp',
+  data() {
+    return {
+      selected: 'disabled'
+    }
+  },
   props: {
     modelValue: {
       type: String,
@@ -32,5 +37,12 @@ export default {
 </script>
 
 <style scoped>
-
+select {
+  border: 2px solid rgb(251,176,53,0.8);
+  background-color: rgb(251,176,53,0.5);
+  border-radius: 5px;
+}
+option {
+  color: white;
+}
 </style>

@@ -8,7 +8,7 @@
 
 <script>
 export default {
-  name: 'modal-comp2',
+  name: 'ModalComp2',
   props: {
     show: {
       type: Boolean,
@@ -35,7 +35,7 @@ export default {
 }
 .modal-content {
   margin: auto;
-  background: white;
+  background-image: url('https://clipart-db.ru/file_content/rastr/background_019.jpg');
   border-radius: 10px;
   padding: 20px;
   width: 500px;
